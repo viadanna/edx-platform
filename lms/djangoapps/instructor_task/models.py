@@ -339,10 +339,7 @@ class DjangoStorageReportStore(ReportStore):
             return []
         except Exception as ex:
             logger.error(
-                'Fetching files failed for course: %s, status: %s, reason: %s, key: %s',
-                course_id,
-                ex.status,
-                ex.reason,
+                'Fetching files failed for: %s',
                 course_dir
             )
         files = [(filename, os.path.join(course_dir, filename)) for filename in filenames]
