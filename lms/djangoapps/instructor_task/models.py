@@ -323,6 +323,10 @@ class DjangoStorageReportStore(ReportStore):
         urls can be plugged straight into an href
         """
         course_dir = self.path_to(course_id)
+        logger.error(
+            'Fetching files failed for: %s',
+            course_dir
+        )
         try:
             _, filenames = self.storage.listdir(course_dir)
         except OSError:
