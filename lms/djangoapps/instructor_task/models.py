@@ -337,6 +337,14 @@ class DjangoStorageReportStore(ReportStore):
                 ex.reason
             )
             return []
+        except Exception as ex:
+            logger.error(
+                'Fetching files failed for course: %s, status: %s, reason: %s, key: %s',
+                course_id,
+                ex.status,
+                ex.reason,
+                course_dir
+            )
         files = [(filename, os.path.join(course_dir, filename)) for filename in filenames]
         files.sort(key=lambda f: self.storage.get_modified_time(f[1]), reverse=True)
         return [
